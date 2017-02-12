@@ -1,0 +1,44 @@
+[
+	{
+		"item": "Skim Milk",
+		"servingSize": "1.0 cup",
+		"calories": 80,
+		"fat": 0,
+		"cholestrol": 5,
+		"sodium": 110,
+		"carbs": 11,
+		"fiber": 0,
+		"sugar": 11,
+		"protein": 8,
+		"vitaminA": 10,
+		"vitaminC": 4
+	},
+	{
+		"item": "Cereal",
+		"servingSize": "1.0 cup",
+		"calories": 200,
+		"fat": 5,
+		"cholestrol": 0,
+		"sodium": 140,
+		"carbs": 33,
+		"fiber": 10,
+		"sugar": 10,
+		"protein": 9,
+		"vitaminA": 0,
+		"vitaminC": 0
+	},
+	{
+		"item": "Banana",
+		"servingSize": "1.0 Banana",
+		"calories": 105,
+		"fat": 0,
+		"cholestrol": 0,
+		"sodium": 1,
+		"carbs": 27,
+		"fiber": 3,
+		"sugar": 14,
+		"protein": 1,
+		"vitaminA": 2,
+		"vitaminC": 17
+	},
+]

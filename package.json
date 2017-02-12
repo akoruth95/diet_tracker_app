@@ -10,6 +10,7 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
+    "axios": "^0.15.3",
     "materialize-css": "^0.98.0",
     "vue": "^2.1.10"
   },
