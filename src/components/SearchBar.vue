@@ -14,6 +14,8 @@
 import axios from 'axios'
 
 export default {
+  props: ['currentMeal'],
+
   data () {
     return {
       foodlist: [],
@@ -37,18 +39,20 @@ export default {
       console.log('here')
     },
     add () {
-      for (this.counter = 0; this.counter < this.foodlist.length; this.counter++) {
-        if (this.foodlist[this.counter].item === this.selected) {
-          this.foodDetails = this.foodlist[this.counter]
-          console.log(this.foodDetails)
-          break
+      if (this.selected !== '') {
+        for (this.counter = 0; this.counter < this.foodlist.length; this.counter++) {
+          if (this.foodlist[this.counter].item === this.selected) {
+            this.foodDetails = this.foodlist[this.counter]
+            console.log(this.foodDetails)
+            break
+          }
         }
+        this.$evt.$emit('add', {
+          selectedItem: this.selectedItem,
+          foodDetails: this.foodDetails,
+          meal: this.currentMeal
+        })
       }
-      this.$evt.$emit('add', {
-        selectedItem: this.selectedItem,
-        foodDetails: this.foodDetails,
-        meal: 'breakfast'
-      })
     }
   }
 

@@ -11,7 +11,7 @@
           </div>
 
           <div class="modal-body">
-            <SearchBar></SearchBar>
+            <SearchBar :current-meal='currentMeal'></SearchBar>
           </div>
           <div class="modal-footer">
             <slot name="footer">
@@ -33,6 +33,8 @@
 import SearchBar from './SearchBar'
 
 export default {
+  props: ['currentMeal'],
+
   data () {
     return {
 
