@@ -4,6 +4,9 @@ import Vue from 'vue'
 import App from './App'
 
 /* eslint-disable no-new */
+const evt = new Vue()
+Vue.prototype.$evt = evt
+
 new Vue({
   el: '#app',
   template: '<App/>',

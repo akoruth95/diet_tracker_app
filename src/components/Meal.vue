@@ -2,7 +2,7 @@
   <div class="food">
       <div class="card">
         <div class="card-content">
-          Banana
+          <slot></slot>
         </div>
       </div>
     </div>

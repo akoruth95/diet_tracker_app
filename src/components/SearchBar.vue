@@ -1,16 +1,58 @@
 <template>
   <section class="main">
 	 <form class="search" method="post" action="index.html" >
-		 <input type="text" name="q" placeholder="Search..." />
-		 <ul class="results" >
-			 <li><a>Search Result #1<br /><span>Description...</span></a></li>
-		 </ul>
+		 <input type="text" name="q" :placeholder="selected" />
+     <!--<div class = "results">-->
+			 <div v-for="food in foodlist" @click="select(food.item)"><a>{{food.item}}<br /><span>{{food.calories}} calories</span></a></div>
+       <a class="waves-effect waves-light btn light-blue darken-3" @click="add">Submit</a>
+     <!--</div>-->
 	 </form>
 </section>
 </template>
 
 <script>
+import axios from 'axios'
 
+export default {
+  data () {
+    return {
+      foodlist: [],
+      selected: '',
+      foodDetails: null,
+      counter: 0
+    }
+  },
+
+  mounted () {
+    axios.get('/static/breakfast.json')
+      .then((response) => {
+        this.foodlist = response.data.food
+        console.log(this.foodlist)
+      })
+  },
+
+  methods: {
+    select (item) {
+      this.selected = item
+      console.log('here')
+    },
+    add () {
+      for (this.counter = 0; this.counter < this.foodlist.length; this.counter++) {
+        if (this.foodlist[this.counter].item === this.selected) {
+          this.foodDetails = this.foodlist[this.counter]
+          console.log(this.foodDetails)
+          break
+        }
+      }
+      this.$evt.$emit('add', {
+        selectedItem: this.selectedItem,
+        foodDetails: this.foodDetails,
+        meal: 'breakfast'
+      })
+    }
+  }
+
+}
 </script>
 
 <style>
@@ -35,7 +77,6 @@ a {
 a:hover { text-decoration: underline }
 
 .container, .main {
-  width: 640px;
   margin-left: auto;
   margin-right: auto;
   height: 300px;
@@ -43,6 +84,7 @@ a:hover { text-decoration: underline }
 
 .main {
   margin-top: 50px;
+  box-sizing: border-box;
   }
 
 input {
@@ -54,7 +96,7 @@ input {
 .search {
   position: relative;
   margin: 0 auto;
-  width: 300px;
+  width: 250px;
 }
 
 .search input {

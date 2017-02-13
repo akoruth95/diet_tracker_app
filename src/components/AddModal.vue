@@ -33,22 +33,14 @@
 import SearchBar from './SearchBar'
 
 export default {
-  props: [
-    'foodlist'
-  ],
-
-  mounted () {
-    console.log(this.foodlist)
-  },
-
-  components: {
-    SearchBar
-  },
-
   data () {
     return {
 
     }
+  },
+
+  components: {
+    SearchBar
   },
 
   methods: {
