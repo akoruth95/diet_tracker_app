@@ -4,7 +4,7 @@
         <h3 class="header">Breakfast</h3>
         <span class="meal-span">
           <meal></meal>
-            <a class='btn-floating btn-large waves-effect waves-light light-blue darken-3'><i class="material-icons">add</i></a>
+            <a class='btn-floating btn-large waves-effect waves-light light-blue darken-3'@click="showModal = true" :foodlist="this.foodlist"><i class="material-icons">add</i></a>
         </span>
       </div>
       <div class="meal">
@@ -19,31 +19,37 @@
           <a class='btn-floating btn-large waves-effect waves-light light-blue darken-3'><i class="material-icons">add</i></a>
         </span>
       </div>
+      <Modal v-if="showModal" @close="showModal = false"></Modal>
+    </div>
 </template>
-
 <script>
 import Meal from './components/Meal'
+import Modal from './components/AddModal'
 import axios from 'axios'
 
 export default {
   name: 'app',
 
   components: {
-    Meal
+    Meal,
+    Modal
   },
 
   data () {
     return {
+      showModal: false,
       breakfast: [],
       lunch: [],
-      dinner: []
+      dinner: [],
+      foodlist: []
     }
   },
 
   mounted () {
     axios.get('/static/breakfast.json')
       .then((response) => {
-        console.log(response.data)
+        this.foodlist = response.data.food[0]
+        console.log(this.foodlist)
       })
   }
 }

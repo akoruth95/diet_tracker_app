@@ -1,4 +1,5 @@
-[
+{
+	"food": [
 	{
 		"item": "Skim Milk",
 		"servingSize": "1.0 cup",
@@ -40,5 +41,6 @@
 		"protein": 1,
 		"vitaminA": 2,
 		"vitaminC": 17
-	},
+	}
 ]
+}
