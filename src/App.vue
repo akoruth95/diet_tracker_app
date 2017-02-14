@@ -1,6 +1,17 @@
 <template>
   <div id="app">
-      <CalorieCounter></CalorieCounter>
+    <GoalInput v-if="landing"></GoalInput>
+    <div v-if="!landing">
+      <nav>
+        <div class="nav-wrapper light-blue darken-3">
+          <a href="#" class="brand-logo" >Diet Tracker</a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a>Diary</a></li>
+            <li><a>Nutrition</a></li>
+          </ul>
+        </div>
+      </nav>
+      <CalorieCounter :total-calories="totalCalories" :target-calories="targetCalories"></CalorieCounter>
       <div class="meal">
         <h3 class="header">Breakfast</h3>
         <span class="meal-span">
@@ -24,12 +35,14 @@
       </div>
       <Modal v-if="showModal" @close="showModal = false" :current-meal="currentMeal"></Modal>
     </div>
+  </div>
 </template>
 
 <script>
 import Meal from './components/Meal'
 import Modal from './components/AddModal'
 import CalorieCounter from './components/CalorieCounter'
+import GoalInput from './components/GoalInput'
 
 export default {
   name: 'app',
@@ -37,7 +50,8 @@ export default {
   components: {
     Meal,
     Modal,
-    CalorieCounter
+    CalorieCounter,
+    GoalInput
   },
 
   data () {
@@ -46,15 +60,24 @@ export default {
       currentMeal: '',
       breakfast: [],
       lunch: [],
-      dinner: []
+      dinner: [],
+      totalCalories: 0,
+      landing: true,
+      targetCalories: 0
     }
   },
 
   mounted () {
     this.$evt.$on('add', this.addMeal)
+    this.$evt.$on('enterGoal', this.setGoal)
   },
 
   methods: {
+    setGoal (targetCalories) {
+      this.targetCalories = targetCalories.goal
+      this.landing = false
+    },
+
     addMeal (data) {
       console.log(data.meal)
       if (data.meal === 'breakfast') {
@@ -62,16 +85,19 @@ export default {
           item: data.selectedItem,
           details: data.foodDetails
         })
+        this.totalCalories += data.foodDetails.calories
       } else if (data.meal === 'lunch') {
         this.lunch.push({
           item: data.selectedItem,
           details: data.foodDetails
         })
+        this.totalCalories += data.foodDetails.calories
       } else if (data.meal === 'dinner') {
         this.dinner.push({
           item: data.selectedItem,
           details: data.foodDetails
         })
+        this.totalCalories += data.foodDetails.calories
       }
     },
 

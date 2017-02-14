@@ -12,9 +12,9 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>2000</td>
-                  <td>2100</td>
-                  <td>-100</td>
+                  <td>{{targetCalories}}</td>
+                  <td>{{totalCalories}}</td>
+                  <td>{{netCalories}}</td>
                 </tr>
             </tbody>
           </table>
@@ -24,6 +24,21 @@
 </template>
 
 <script>
+export default {
+  props: ['totalCalories', 'targetCalories'],
+
+  data () {
+    return {
+      netCalories: 0
+    }
+  },
+
+  methods: {
+    get () {
+    }
+  }
+
+}
 
 </script>
 
