@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+      <CalorieCounter></CalorieCounter>
       <div class="meal">
         <h3 class="header">Breakfast</h3>
         <span class="meal-span">
@@ -28,13 +29,15 @@
 <script>
 import Meal from './components/Meal'
 import Modal from './components/AddModal'
+import CalorieCounter from './components/CalorieCounter'
 
 export default {
   name: 'app',
 
   components: {
     Meal,
-    Modal
+    Modal,
+    CalorieCounter
   },
 
   data () {
@@ -89,6 +92,7 @@ export default {
 }
 .meal {
   padding: 50px;
+  padding-top: 25px;
 }
 .btn-floating {
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.19), 0px 6px 6px rgba(0, 0, 0, 0.23);
