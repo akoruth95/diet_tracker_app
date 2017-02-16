@@ -14,7 +14,7 @@
                 <tr>
                   <td>{{targetCalories}}</td>
                   <td>{{totalCalories}}</td>
-                  <td>{{netCalories}}</td>
+                  <td>{{targetCalories-totalCalories}}</td>
                 </tr>
             </tbody>
           </table>
@@ -29,7 +29,6 @@ export default {
 
   data () {
     return {
-      netCalories: 0
     }
   },
 

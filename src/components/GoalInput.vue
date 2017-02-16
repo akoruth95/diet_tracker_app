@@ -1,8 +1,8 @@
 <template>
-  <div class="main light-blue darken-3">
+  <div class="main light-blue darken-3 fade">
     <span class="intro">Welcome to Your Personal Daily Diet Tracker!
     </span>
-    <div class="input-field col s6">
+    <div class="input-field col s6 fade">
           <input id="icon_prefix" type="number" class="validate" v-model="goal">
           <label for="icon_prefix">Calorie Target</label>
           <a class="waves-effect waves-light btn" @click="enterGoal">Submit</a>
@@ -15,12 +15,14 @@ export default {
 
   data () {
     return {
-      goal: 2000
+      goal: 2000,
+      closeDiv: false
     }
   },
 
   methods: {
     enterGoal () {
+      this.closeDiv = true
       this.$evt.$emit('enterGoal', {
         goal: this.goal
       })
@@ -43,16 +45,26 @@ export default {
   padding-top: 200px;
   padding-bottom: 50px;
   display: block;
+}
 
+input {
+  width: 20%;
+}
+
+.scaleUp {
+	animation: scaleUp .7s ease both;
+}
+
+@keyframes scaleUp {
+	from { opacity: 0; transform: scale(.8); }
+}
+
+.fade {
   -webkit-animation: fadein 7s; /* Safari, Chrome and Opera > 12.1 */
      -moz-animation: fadein 7s; /* Firefox < 16 */
       -ms-animation: fadein 7s; /* Internet Explorer */
        -o-animation: fadein 7s; /* Opera < 12.1 */
           animation: fadein 7s;
-}
-
-input {
-  width: 20%;
 }
 
 /* label underline focus color */
@@ -70,6 +82,7 @@ input {
 .input-field input[type=number]:focus {
      border-bottom: 1px solid white;
      box-shadow: 0 1px 0 0 white;
+     color: white
 }
 
 
