@@ -15,6 +15,7 @@
           </div>
           <div class="modal-footer">
             <slot name="footer">
+              Click the desired item!
             </slot>
           </div>
         </div>
@@ -29,7 +30,7 @@
 import SearchBar from './SearchBar'
 
 export default {
-  props: ['currentMeal'],
+  props: ['currentMeal'], // eventually used to determine which meal(breakfast, lunch, or dinner) to be added to
 
   data () {
     return {

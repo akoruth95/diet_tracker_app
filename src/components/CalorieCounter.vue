@@ -50,7 +50,7 @@ export default {
 }
 
 .card {
-  border-radius: 50px;
+  border-radius: 20px;
   width: 70%;
   margin: auto;
 

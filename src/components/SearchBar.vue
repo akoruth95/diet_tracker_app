@@ -18,10 +18,11 @@ export default {
 
   data () {
     return {
-      foods: [],
-      selected: 'Search',
-      foodDetails: null,
-      counter: 0
+      foods: [], // to contain all json objects
+      selected: 'Search', // placeholder for search inpu
+      foodDetails: null, // part of json object
+      counter: 0,
+      validItem: false // toggles on item click
     }
   },
 
@@ -34,7 +35,7 @@ export default {
   },
 
   computed: {
-    filteredFoods: function () {
+    filteredFoods: function () { // filter to provide live search
       return this.foods.filter((food) => {
         if (this.selected !== '') {
           return food.item.toUpperCase().includes(this.selected.toUpperCase())
@@ -44,24 +45,25 @@ export default {
   },
 
   methods: {
-    select (item) {
+    select (item) { // item is food item clicked on after search
       this.selected = item
+      this.validItem = true
     },
-    add () {
-      if (this.selected !== '') {
+    add () { // this function searches through json aray of objects and retrieves the selected food object
+      if (this.validItem) {
         for (this.counter = 0; this.counter < this.foods.length; this.counter++) {
           if (this.foods[this.counter].item === this.selected) {
-            this.foodDetails = this.foods[this.counter]
+            this.foodDetails = this.foods[this.counter] // foodDetails is food item/object to be pushed into meal array in App.vue
             console.log(this.foodDetails)
             break
           }
         }
-        console.log('hello: ', this.selectedItem)
         this.$evt.$emit('add', {
           selectedItem: this.selected,
           foodDetails: this.foodDetails,
-          meal: this.currentMeal
+          meal: this.currentMeal // to indicate which meal array to be pushed into
         })
+        this.validItem = false
       }
     }
   }
@@ -78,6 +80,10 @@ export default {
 
 .collection:empty {
   border: none;
+}
+
+.active-collection {
+  background-color: blue;
 }
 
 .collection-item:hover {

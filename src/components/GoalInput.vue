@@ -15,7 +15,7 @@ export default {
 
   data () {
     return {
-      goal: 2000,
+      goal: 2000, // daily caloric target
       closeDiv: false
     }
   },
@@ -23,7 +23,7 @@ export default {
   methods: {
     enterGoal () {
       this.closeDiv = true
-      this.$evt.$emit('enterGoal', {
+      this.$evt.$emit('enterGoal', { // passes goal from landing page to calorie counter component
         goal: this.goal
       })
     }

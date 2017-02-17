@@ -73,12 +73,12 @@ export default {
   },
 
   methods: {
-    setGoal (targetCalories) {
+    setGoal (targetCalories) { // for calori counter component
       this.targetCalories = targetCalories.goal
       this.landing = false
     },
 
-    addMeal (data) {
+    addMeal (data) { // Called when submit button is pressed on add-modal. Pushes added item to respective array
       console.log(data.meal)
       if (data.meal === 'breakfast') {
         this.breakfast.push({
@@ -101,7 +101,7 @@ export default {
       }
     },
 
-    openModal (whichMeal) {
+    openModal (whichMeal) { // function to toggle open and close of modal
       this.showModal = true
       this.currentMeal = whichMeal
     }
