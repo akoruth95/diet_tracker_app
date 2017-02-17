@@ -1,9 +1,9 @@
 <template>
   <transition name="modal">
     <div class="modal-mask">
+      <div class="close" @click="$emit('close')"></div>
       <div class="modal-wrapper">
         <div class="modal-container">
-
           <div class="modal-header">
             <slot name="header">
               Add an Item
@@ -15,10 +15,6 @@
           </div>
           <div class="modal-footer">
             <slot name="footer">
-              default footer
-              <button class="modal-default-button" @click="$emit('close')">
-                OK
-              </button>
             </slot>
           </div>
         </div>
@@ -53,6 +49,38 @@ export default {
 </script>
 
 <style>
+.close {
+  position: absolute;
+  right: 32px;
+  top: 32px;
+  width: 32px;
+  height: 32px;
+  opacity: 0.3;
+  cursor: pointer;
+}
+.close:hover {
+  opacity: 1;
+}
+.close:before, .close:after {
+  position: absolute;
+  left: 15px;
+  content: ' ';
+  height: 33px;
+  width: 2px;
+  background-color: red;
+}
+.close:before {
+  transform: rotate(45deg);
+}
+.close:after {
+  transform: rotate(-45deg);
+}
+
+.filler {
+  width: 50%;
+  height: 5px;
+  visibility: hidden;
+}
 
 .modal-mask {
 position: fixed;
