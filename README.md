@@ -7,6 +7,8 @@
 ``` bash
 # install dependencies
 npm install
+npm install axios
+npm install materialize-css 
 
 # serve with hot reload at localhost:8080
 npm run dev

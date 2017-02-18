@@ -5,7 +5,7 @@
     <div class="input-field col s6 fade">
           <input id="icon_prefix" type="number" class="validate" v-model="goal">
           <label for="icon_prefix">Calorie Target</label>
-          <a class="waves-effect waves-light btn" @click="enterGoal">Submit</a>
+          <a class="waves-effect waves-light btn indigo darken-3" @click="enterGoal">Submit</a>
     </div>
   </div>
 </template>
@@ -23,6 +23,9 @@ export default {
   methods: {
     enterGoal () {
       this.closeDiv = true
+      if (this.goal === '') {
+        this.goal = 0
+      }
       this.$evt.$emit('enterGoal', { // passes goal from landing page to calorie counter component
         goal: this.goal
       })
